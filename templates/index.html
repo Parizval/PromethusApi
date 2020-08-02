@@ -15,7 +15,7 @@
                 <table class="table">
                     <thead>
                       <tr>
-                       
+                        <th scope="col">Num</th>
                         <th scope="col">Key</th>
                         <th scope="col">Value</th>
                         
@@ -24,9 +24,9 @@
                     <tbody>
                     {% for i in  data %}
                       <tr>
-                        
-                        <td> {{ i }} </td>
-                        <td> {{ data[i] }} </td>
+                        <td>{{i}}</td>
+                        <td> {{ data[i]['field'] }} </td>
+                        <td class="{{i}}-val"> {{ data[i]['value'] }} </td>
                       </tr>
                     {% endfor %}
                     </tbody>
@@ -45,8 +45,7 @@
             var num = 1 ; 
             setInterval(function(){
 
-                console.log(num);
-                num += 1 ;  
+                
             },5000)
         });
     </script>
