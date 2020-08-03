@@ -13,7 +13,7 @@ def Home():
     data = process.RenderTable()
     length = len(data)
     print(length)
-    return render_template("index.html",data=data,length=length)
+    return render_template("index.html",data=data,length=length-1)
 
 @app.route('/request', methods=['POST'])
 def GetData():

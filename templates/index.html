@@ -63,7 +63,21 @@
 
             $.ajax({
                   data :{
-                        name : "checkpostrequest"
+                            {% for i in  data %}
+
+                              {% if i == length %}
+
+                              "{{ data[i]['field'] }}" : "{{ data[i]['value'] }}"
+                              
+                              {% else %}
+                              
+                                "{{ data[i]['field'] }}" : "{{ data[i]['value'] }}" ,
+
+                              {% endif %}
+
+                            {% endfor %}
+
+                        
                   },
                   type : "POST",
                   url : '/request'
