@@ -5,8 +5,9 @@ def RenderTable():
 
     lines = file.readlines()
     data = {}
+    counter = 0 
     for  x  in lines:
         key,val = x.split()
-        data[key] = val 
-
+        data[counter] = {"field":key,"value":val} 
+        counter +=1 
     return data
