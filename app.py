@@ -11,15 +11,22 @@ app.secret_key = "Nothing"
 def Home():
 
     data = process.RenderTable()
-    return render_template("index.html",data=data)
+    length = len(data)
+    print(length)
+    return render_template("index.html",data=data,length=length)
 
 @app.route('/request', methods=['POST'])
 def GetData():
-    data = request.form['name']
-    print(data)
+    # data = request.form['name']
+    # print(data)
+    # val = request.form.items()
+    # print("code checkval",val)
+    for key,val in request.form.items():
+        print(key,val)
+    
     reponse = {}
     reponse['check'] = True
     return reponse 
-    
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000)
