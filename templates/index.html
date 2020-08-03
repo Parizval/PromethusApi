@@ -1,53 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
-<body>
-    
-       
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <h2 class="test">Data</h2>
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 " style="margin-top: 10%;">
-                <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Num</th>
-                        <th scope="col">Key</th>
-                        <th scope="col">Value</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                    {% for i in  data %}
-                      <tr>
-                        <td>{{i}}</td>
-                        <td> {{ data[i]['field'] }} </td>
-                        <td class="{{i}}-val"> {{ data[i]['value'] }} </td>
-                      </tr>
-                    {% endfor %}
-                    </tbody>
-                  </table>
-            </div>
+      <div class="row">
+        <div class="col-md-6" style="margin-top: 10%;">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Num</th>
+                <th scope="col">Key</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in data %}
+              <tr>
+                <td>{{i}}</td>
+                <td class="{{i}}-field">{{ data[i]['field'] }}</td>
+                <td class="{{i}}-val">{{ data[i]['value'] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
         </div>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    
-    <script>    
-        $(document).ready(function(){
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $(document).ready(function(){
 
 
-            alert("Page Loaded");
-            var num = 1 ; 
-            setInterval(function(){
+          alert("Page Loaded");
+          var num = 1 ;
 
-                
-            },5000)
-        });
+          {% for i in  data %}
+
+            console.log($(".{{i}}-field").text());
+
+          {% endfor %}
+
+
+          setInterval(function(){
+
+            $.ajax({
+                  data :{
+                        name : "checkpostrequest"
+                  },
+                  type : "POST",
+                  url : '/request'
+        })
+            .done(function(data){
+                             if (data.check)
+                             {
+                                console.log("Sucess");
+                             }
+                             else{
+
+                                  console.log("Failed");
+                             }
+                         });
+
+          },5000)
+      });
     </script>
-</body>
+  </body>
 </html>
