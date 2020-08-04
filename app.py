@@ -17,14 +17,11 @@ def Home():
 
 @app.route('/request', methods=['POST'])
 def GetData():
-    # data = request.form['name']
-    # print(data)
-    # val = request.form.items()
-    # print("code checkval",val)
+    reponse = {}
     for key,val in request.form.items():
         print(key,val)
-    
-    reponse = {}
+        reponse[key] = val+"mod"
+
     reponse['check'] = True
     return reponse 
 
