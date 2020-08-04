@@ -67,11 +67,11 @@
 
                               {% if i == length %}
 
-                              "{{ data[i]['field'] }}" : "{{ data[i]['value'] }}"
+                              "{{ data[i]['id'] }}" : "{{ data[i]['value'] }}"
                               
                               {% else %}
                               
-                                "{{ data[i]['field'] }}" : "{{ data[i]['value'] }}" ,
+                                "{{ data[i]['id'] }}" : "{{ data[i]['value'] }}" ,
 
                               {% endif %}
 
@@ -86,6 +86,9 @@
                              if (data.check)
                              {
                                 console.log("Sucess");
+                                {% for i in data %}
+                                      $(".{{i}}-val").text(data["{{data[i]['id']}}"]);
+                                {% endfor %}
                              }
                              else{
 
