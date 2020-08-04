@@ -67,11 +67,11 @@
 
                               {% if i == length %}
 
-                              "{{ data[i]['id'] }}" : "{{ data[i]['value'] }}"
+                              "{{ data[i]['id'] }}" : $(".{{i}}-val").text()
                               
                               {% else %}
                               
-                                "{{ data[i]['id'] }}" : "{{ data[i]['value'] }}" ,
+                                "{{ data[i]['id'] }}" : $(".{{i}}-val").text() ,
 
                               {% endif %}
 
